@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan Earthquake Tracker</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Recent Earthquakes in Japan</h1>
+
+        <div class="form-section filter-form">
+            <form method="get" action="/">
+                <label for="prefecture-filter">Filter by Prefecture:</label>
+                <select name="prefecture" id="prefecture-filter">
+                    <option value="all">All Prefectures</option>
+                    {% for p in prefectures %}
+                        <option value="{{ p['prefecture'] }}" {% if p['prefecture'] == selected_prefecture %}selected{% endif %}>
+                            {{ p['prefecture'] }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <div class="form-section subscribe-section">
+            <div>
+                <h2>Get Notified of Major Quakes</h2>
+                <form method="post" action="/subscribe">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="prefecture-subscribe">Prefecture:</label>
+                    <select name="prefecture" id="prefecture-subscribe" required>
+                        <option value="" disabled selected>Select a Prefecture</option>
+                        {% for p in prefectures %}
+                            <option value="{{ p['prefecture'] }}">{{ p['prefecture'] }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <table>
+            <thead>
+                <tr>
+                    <!-- This header link toggles the sort order for 'time' -->
+                    <th>
+                        <a href="{{ url_for('index', sort_by='time', order='asc' if sort_by == 'time' and order == 'desc' else 'desc', prefecture=selected_prefecture) }}">
+                            Time {% if sort_by == 'time' %}{{ '▼' if order == 'desc' else '▲' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ url_for('index', sort_by='epicenter_name', order='asc' if sort_by == 'epicenter_name' and order == 'desc' else 'desc', prefecture=selected_prefecture) }}">
+                            Epicenter {% if sort_by == 'epicenter_name' %}{{ '▼' if order == 'desc' else '▲' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ url_for('index', sort_by='magnitude', order='asc' if sort_by == 'magnitude' and order == 'desc' else 'desc', prefecture=selected_prefecture) }}">
+                            Magnitude {% if sort_by == 'magnitude' %}{{ '▼' if order == 'desc' else '▲' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ url_for('index', sort_by='city', order='asc' if sort_by == 'city' and order == 'desc' else 'desc', prefecture=selected_prefecture) }}">
+                            City {% if sort_by == 'city' %}{{ '▼' if order == 'desc' else '▲' }}{% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ url_for('index', sort_by='prefecture', order='asc' if sort_by == 'prefecture' and order == 'desc' else 'desc', prefecture=selected_prefecture) }}">
+                            Prefecture {% if sort_by == 'prefecture' %}{{ '▼' if order == 'desc' else '▲' }}{% endif %}
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quake in earthquakes %}
+                <tr>
+                    <td>{{ quake['time'] }}</td>
+                    <td>{{ quake['epicenter_name'] }}</td>
+                    <td>{{ quake['magnitude'] }}</td>
+                    <td>{{ quake['city'] }}</td>
+                    <td>{{ quake['prefecture'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
