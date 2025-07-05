@@ -1,0 +1,118 @@
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+    margin: 0; 
+    background-color: #FEF9E1; 
+    color: #333; 
+}
+
+.container { 
+    max-width: 900px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+h1, h2 { 
+    text-align: center; 
+}
+
+h1 { 
+    color: #8E1616; 
+}
+
+.form-section { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    gap: 10px; 
+    padding: 20px; 
+    border: 1px solid #eee; 
+    border-radius: 5px; 
+}
+
+.subscribe-section { 
+    background-color: #8E1616; 
+}
+
+.subscribe-section h2 { 
+    color: #FEF9E1; 
+}
+
+.subscribe-section label { 
+    color: #FEF9E1; 
+}
+
+.subscribe-section button { 
+    background-color: #FEF9E1; 
+    color: #8E1616; 
+    border-color: #8E1616; 
+}
+
+label { 
+    font-weight: bold; 
+}
+
+select, input, button { 
+    font-size: 16px; 
+    padding: 8px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+}
+
+.filter-form button { 
+    background-color: #FEF9E1; 
+    color: #8E1616; 
+    cursor: pointer; 
+    border-color: #8E1616; 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+    border: 1px solid #ddd; 
+}
+
+th, td { 
+    padding: 12px 15px; 
+    text-align: left; 
+    border: 1px solid #ddd; 
+}
+
+th { 
+    background-color: #f8f8f8; 
+    font-weight: bold; 
+}
+
+th a { 
+    text-decoration: none; 
+    color: inherit; 
+}
+
+th a:hover { 
+    text-decoration: underline; 
+}
+
+tr:hover { 
+    background-color: #f1f1f1; 
+}
+
+.message { 
+    text-align: center; 
+    padding: 10px; 
+    margin-top: 10px; 
+    border-radius: 5px; 
+}
+
+.success { 
+    background-color: #d4edda; 
+    color: #155724; 
+}
+
+.error { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+}
