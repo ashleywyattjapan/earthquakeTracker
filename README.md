@@ -1,3 +1,4 @@
+#Earthquake Tracker 
 Japan Earthquake Tracker
 A full-stack web application that fetches, stores, and displays recent earthquake data from across Japan. This project demonstrates skills in backend development, API integration, and database management. Users can view the 50 most recent earthquakes, filter the results by prefecture, and sort the data by time or magnitude.
 
